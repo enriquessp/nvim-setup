@@ -22,6 +22,8 @@ return require('packer').startup(function(use)
 
 	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'} )
 
+	use('fatih/vim-go', { run = ':GoUpdateBinaries' } )
+
 	use('nvim-treesitter/playground')
 	use('ThePrimeagen/harpoon')
 	use('mbbill/undotree')
