@@ -24,5 +24,5 @@ return require('packer').startup(function(use)
 
 	use('nvim-treesitter/playground')
 	use('ThePrimeagen/harpoon')
-
+	use('mbbill/undotree')
 end)
