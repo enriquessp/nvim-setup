@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<leader>ds", vim.cmd.GoDebugStart)
+vim.keymap.set("n", "<leader>dc", vim.cmd.GoDebugContinue)
+vim.keymap.set("n", "<leader>dn", vim.cmd.GoDebugNext)
+vim.keymap.set("n", "<leader>dr", vim.cmd.GoDebugRestart)
+vim.keymap.set("n", "<leader>dt", vim.cmd.GoDebugStop)
