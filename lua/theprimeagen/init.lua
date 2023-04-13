@@ -1,2 +1,2 @@
 require("theprimeagen.remap")
-print("hello from theprimeagen")
+require("theprimeagen.set")
