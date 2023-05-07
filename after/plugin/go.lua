@@ -3,6 +3,7 @@ vim.keymap.set("n", "<leader>lt", vim.cmd.GoTest)
 vim.keymap.set("n", "<leader>lc", vim.cmd.GoCoverageToggle)
 vim.keymap.set("n", "<leader>ld", vim.cmd.GoDoc)
 vim.keymap.set("n", "<leader>lx", vim.cmd.GoRun)
+vim.keymap.set("n", "<leader>lf", vim.cmd.GoDecls)
 
 --let g:go_doc_keywordprg_enabled = 0
 vim.g.go_doc_keywordprg_enabled = 0

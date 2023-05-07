@@ -105,5 +105,8 @@ use({
 
 use("f-person/git-blame.nvim")
 
+use{"junegunn/fzf", run = ":fzf#install()"}
+use("junegunn/fzf.vim")
+
 end)
 
