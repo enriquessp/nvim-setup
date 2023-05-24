@@ -16,12 +16,12 @@ local openWindow = function ()
     local opts = {relative= 'win', width= 100, height= 100, col=100, row= 1, anchor= 'NW', style= 'minimal'}
     vim.api.nvim_open_win(bufnr, 0, opts)
 end
+openWindow()
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = vim.api.nvim_create_augroup("GoFiles", { clear = true }),
     pattern = "main.go",
     callback = function (cmdData)
-        openWindow()
         cleanBuf()
         vim.fn.jobstart(rolloutCmd,{
             stdout_buffered = true,
@@ -36,7 +36,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     group = vim.api.nvim_create_augroup("GoTestFiles", { clear = true }),
     pattern = "*_test.go",
     callback = function ()
-        openWindow()
         cleanBuf()
         vim.fn.jobstart(testCmd,{
             stdout_buffered = true,
@@ -51,7 +50,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     group = vim.api.nvim_create_augroup("gomod_group", { clear = true }),
     pattern = "go.mod",
     callback = function ()
-        openWindow()
         cleanBuf()
         vim.fn.jobstart(modTidyCmd,{
             stdout_buffered = true,
