@@ -1,10 +1,9 @@
 
 local bufnr = vim.api.nvim_create_buf(false, true)
-local testCmd = {"make","test"}
-local rolloutCmd, modTidyCmd = {"make","run"},{"go","mod","tidy"}
+local testCmd, rolloutCmd, modTidyCmd = {"make","test"},{"make","run"},{"go","mod","tidy"}
+
 local printResult = function (_, data)
     if data then
-        -- vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {"From function"})
         vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, data)
     end
 end
@@ -14,10 +13,9 @@ local cleanBuf = function ()
 end
 
 local openWindow = function ()
-    local opts = {relative= 'cursor', width= 150, height= 100, col= 0, row= 1, anchor= 'NW', style= 'minimal'}
+    local opts = {relative= 'win', width= 100, height= 100, col=100, row= 1, anchor= 'NW', style= 'minimal'}
     vim.api.nvim_open_win(bufnr, 0, opts)
 end
-
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = vim.api.nvim_create_augroup("GoFiles", { clear = true }),
