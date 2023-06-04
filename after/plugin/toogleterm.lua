@@ -18,3 +18,46 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 vim.keymap.set("n","<leader>th", ":ToggleTerm dir=./ direction=horizontal<CR>")
 vim.keymap.set("n","<leader>tv", ":ToggleTerm size=80 dir=./ direction=vertical<CR>")
+
+local M = {}
+
+local Terminal = require("toggleterm.terminal").Terminal
+
+-- Docker
+local docker_tui = "lazydocker"
+
+local docker_client = Terminal:new {
+  cmd = docker_tui,
+  dir = "git_dir",
+  hidden = true,
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+}
+
+function M.docker_client_toggle()
+  docker_client:toggle()
+end
+
+-- Docker ctop
+local docker_ctop = "ctop"
+
+local docker_ctop_client = Terminal:new {
+  cmd = docker_ctop,
+  dir = "git_dir",
+  hidden = true,
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+}
+
+function M.docker_ctop_toggle()
+  docker_ctop_client:toggle()
+end
+
+vim.keymap.set("n", "<leader>tc", M.docker_ctop_toggle)
+vim.keymap.set("n", "<leader>td", M.docker_client_toggle)
+
+return M

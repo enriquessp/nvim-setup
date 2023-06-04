@@ -1,0 +1,9 @@
+{
+    "workspace.library": [
+        "/Users/pauloenriquepereira/nvim-macos/share/nvim/runtime/lua",
+        "/Users/pauloenriquepereira/.config/nvim/lua",
+        "/Users/pauloenriquepereira/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/38119d05",
+        "/Users/pauloenriquepereira/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/7df9f1be",
+        "/Users/pauloenriquepereira/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/4625bab1"
+    ]
+}
