@@ -1,6 +1,8 @@
 require("toggleterm").setup{}
 
 -- https://github.com/akinsho/toggleterm.nvim
+-- https://github.com/bcicen/ctop
+-- https://github.com/jesseduffield/lazydocker
 
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
@@ -16,8 +18,6 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-vim.keymap.set("n","<leader>th", ":ToggleTerm dir=./ direction=horizontal<CR>")
-vim.keymap.set("n","<leader>tv", ":ToggleTerm size=80 dir=./ direction=vertical<CR>")
 
 local M = {}
 
@@ -57,7 +57,27 @@ function M.docker_ctop_toggle()
   docker_ctop_client:toggle()
 end
 
+-- Docker k9s
+local docker_k9s = "k9s"
+
+local docker_k9s_client = Terminal:new {
+  cmd = docker_k9s,
+  dir = "git_dir",
+  hidden = true,
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+}
+
+function M.docker_k9s_toggle()
+  docker_k9s_client:toggle()
+end
+
+vim.keymap.set("n", "<leader>tk", M.docker_k9s_toggle)
 vim.keymap.set("n", "<leader>tc", M.docker_ctop_toggle)
 vim.keymap.set("n", "<leader>td", M.docker_client_toggle)
+vim.keymap.set("n","<leader>th", ":ToggleTerm dir=./ direction=horizontal<CR>")
+vim.keymap.set("n","<leader>tv", ":ToggleTerm size=80 dir=./ direction=vertical<CR>")
 
 return M

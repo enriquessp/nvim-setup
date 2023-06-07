@@ -9,7 +9,7 @@ local new_cmd_client = function (cmd)
         direction = "float",
         close_on_exit = false,
         float_opts = {
-            border = "double",
+            border = "curved",
         },
     }
 end
@@ -17,7 +17,7 @@ end
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = vim.api.nvim_create_augroup("GoFiles", { clear = true }),
     pattern = "main.go",
-    callback = function (cmdData)
+    callback = function ()
         local cmd_terminal = new_cmd_client("make run")
         cmd_terminal:toggle()
     end
