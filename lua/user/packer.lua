@@ -126,5 +126,10 @@ use({
     }
 })
 
+use {
+  "hudclark/grpc-nvim",
+  requires = { "nvim-lua/plenary.nvim" }
+}
+
 end)
 
