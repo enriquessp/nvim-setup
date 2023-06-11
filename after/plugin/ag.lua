@@ -14,22 +14,22 @@ local new_cmd_client = function (cmd, dir, direction)
     }
 end
 
-vim.keymap.set("n", "<leader>kd", ":!kubectx dev && make rollout-dev<CR>")
-vim.keymap.set("n", "<leader>kl", ":!kubectx local && make rollout-local<CR>")
+vim.keymap.set("n", "<leader>md", ":!kubectx dev && make rollout-dev<CR>")
+vim.keymap.set("n", "<leader>ml", ":!kubectx local && make rollout-local<CR>")
 
 vim.keymap.set("n", "<leader>mr", ":!make run<CR>")
-vim.keymap.set("n", "<leader>md", function ()
-    new_cmd_client("make run-debug", "./", "float"):toggle()
+vim.keymap.set("n", "<leader>mx", function ()
+    new_cmd_client("make run-debug", "./", "vertical"):toggle()
 end)
 
 
 vim.keymap.set("n", "<leader>cb", function ()
-    new_cmd_client("make run-booking-spec", "~/projects/ag/poc-cypressio", "vertical"):toggle()
+    new_cmd_client("make run-booking-spec", "~/projects/ag/poc-cypressio", "horizontal"):toggle()
 end);
 vim.keymap.set("n", "<leader>ct", function ()
-    new_cmd_client("make run-ticketing-spec", "~/projects/ag/poc-cypressio", "vertical"):toggle()
+    new_cmd_client("make run-ticketing-spec", "~/projects/ag/poc-cypressio", "horizontal"):toggle()
 end);
 vim.keymap.set("n", "<leader>ci", function ()
-    new_cmd_client("make run-import-booking-spec", "~/projects/ag/poc-cypressio", "vertical"):toggle()
+    new_cmd_client("make run-import-booking-spec", "~/projects/ag/poc-cypressio", "horizontal"):toggle()
 end);
 
