@@ -59,77 +59,77 @@ return require('packer').startup(function(use)
         -- Autocompletion
         {'hrsh7th/nvim-cmp'},     -- Required
         {'hrsh7th/cmp-nvim-lsp'}, -- Required
-        {'L3MON4D3/LuaSnip'},     -- Required
+        {'L3MON4D3/LuaSnip'}}     -- Required
     }
-}
 
-use("folke/zen-mode.nvim")
--- use("github/copilot.vim")
-use("eandrju/cellular-automaton.nvim")
-use("laytan/cloak.nvim")
+    use("folke/zen-mode.nvim")
+    -- use("github/copilot.vim")
+    use("eandrju/cellular-automaton.nvim")
+    use("laytan/cloak.nvim")
 
-use('fatih/vim-go', { run = ':GoUpdateBinaries' } )
+    use('fatih/vim-go', { run = ':GoUpdateBinaries' } )
 
-use('tpope/vim-dadbod')
-use('kristijanhusak/vim-dadbod-ui')
-use{'ldelossa/gh.nvim',
-requires = {
-    { 'ldelossa/litee.nvim' }
-}
-}
-
-use {
-    "folke/which-key.nvim",
-    config = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 300
-        require("which-key").setup {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        }
-    end
-}
-
-use {
-    'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-    end
-}
-
-use({
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-})
-
-use("f-person/git-blame.nvim")
-
-use{"junegunn/fzf", run = ":fzf#install()"}
-use("junegunn/fzf.vim")
-
-use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-  require("toggleterm").setup()
-end}
-
-use { 'nvim-telescope/telescope-project.nvim' }
-
-use({
-  "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup()
-    end,
+    use('tpope/vim-dadbod')
+    use('kristijanhusak/vim-dadbod-ui')
+    use{'ldelossa/gh.nvim',
     requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+        { 'ldelossa/litee.nvim' } }
     }
-})
 
-use {
-  "hudclark/grpc-nvim",
-  requires = { "nvim-lua/plenary.nvim" }
-}
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
 
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    })
+
+    use("f-person/git-blame.nvim")
+
+    use{"junegunn/fzf", run = ":fzf#install()"}
+    use("junegunn/fzf.vim")
+
+    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+        require("toggleterm").setup()
+    end}
+
+    use { 'nvim-telescope/telescope-project.nvim' }
+
+    use({
+        "jackMort/ChatGPT.nvim",
+        config = function()
+            require("chatgpt").setup()
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    })
+
+    use {
+        "hudclark/grpc-nvim",
+        requires = { "nvim-lua/plenary.nvim" }
+    }
+
+    -- JAVA
+    use 'mfussenegger/nvim-jdtls'
 end)
 

@@ -42,14 +42,15 @@ vim.keymap.set("n", "<leader>mx", function ()
 end)
 
 -- K8S
+local dir=split(os.getenv("PWD"), "/")
+local current_dir = dir[#dir]
+print("logs_ag.sh " .. current_dir)
+
 vim.keymap.set("n", "<leader>kl", function ()
-    local dir=split(os.getenv("PWD"), "/")
-    local current_dir = dir[#dir]
-    new_cmd_client("logs_ag.sh " .. current_dir, "./", "float"):toggle()
+    print("logs_ag.sh " .. current_dir)
+    -- new_cmd_client("logs_ag.sh " .. current_dir, "./", "float"):toggle()
 end)
 vim.keymap.set("n", "<leader>kr", function ()
-    local dir=split(os.getenv("PWD"), "/")
-    local current_dir = dir[#dir]
     new_cmd_client("kubectl rollout restart deploy " .. current_dir, "./", "float"):toggle()
 end)
 vim.keymap.set("n", "<leader>k9", function ()
