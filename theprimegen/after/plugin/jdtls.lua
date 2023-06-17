@@ -1,7 +1,7 @@
 local home = os.getenv('HOME')
 local jdtls = require('jdtls')
-local jdtls_home = '/home/linuxbrew/.linuxbrew/Cellar/jdtls/1.24.0'
-local java_home = home .. "/.sdkman/candidates/java/17.0.5-oracle"
+local jdtls_home = '/usr/local/Cellar/jdtls/1.24.0'
+local java_home = home .. "/.sdkman/candidates/java/17.0.3-zulu"
 
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
@@ -144,11 +144,11 @@ local config = {
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
     '-Xmx4g',
+    -- If you use lombok, download the lombok jar and place it in ~/.local/share/eclipse
+    '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    -- If you use lombok, download the lombok jar and place it in ~/.local/share/eclipse
-    '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
 
     -- The jar file is located where jdtls was installed. This will need to be updated
     -- to the location where you installed jdtls
