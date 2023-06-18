@@ -221,6 +221,30 @@ M.dap_go = {
       end,
       "Debug last go test",
     },
+    ["<C-n>"] = {
+      function ()
+        vim.cmd("DapStepOver")
+      end,
+      "Dap step over",
+    },
+    ["<C-o>"] = {
+      function ()
+        vim.cmd("DapStepOut")
+      end,
+      "Dap step over",
+    },
+    ["<C-i>"] = {
+      function ()
+        vim.cmd("DapStepInto")
+      end,
+      "Dap step into",
+    },
+    ["<C-r>"] = {
+      function ()
+        vim.cmd("DapContinue")
+      end,
+      "Dap continue",
+    },
   },
 }
 
