@@ -48,5 +48,28 @@ local plugins = {
       vim.cmd [[silent! GoInstallDeps]]
     end,
   },
+  {
+    "theprimeagen/harpoon",
+    config = function (_,opts)
+      require("harpoon").setup(opts)
+      require("core.utils").load_mappings("harpoon")
+    end
+  },
+  {
+    "tpope/vim-dadbod",
+  },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = "tpope/vim-dadbod",
+  },
+  {
+    "nvim-telescope/telescope-project.nvim",
+    dependencies = "nvim-telescope/telescope.nvim",
+    init = function ()
+      vim.defer_fn(function()
+        require'telescope'.load_extension('project')
+      end, 0)
+    end,
+  },
 }
 return plugins
