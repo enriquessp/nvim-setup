@@ -1,5 +1,105 @@
 local M = {}
 
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+function split(pString, pPattern)
+   local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
+   local fpat = "(.-)" .. pPattern
+   local last_end = 1
+   local s, e, cap = pString:find(fpat, 1)
+   while s do
+      if s ~= 1 or cap ~= "" then
+     table.insert(Table,cap)
+      end
+      last_end = e+1
+      s, e, cap = pString:find(fpat, last_end)
+   end
+   if last_end <= #pString then
+      cap = pString:sub(last_end)
+      table.insert(Table, cap)
+   end
+   return Table
+end
+
+local dir=split(os.getenv("PWD"), "/")
+local current_dir = dir[#dir]
+print("logs_ag.sh " .. current_dir)
+
+M.ag = {
+  n = {
+    -- MAKEFILE
+    ["<leader>md"] = {
+     function ()
+        require("nvterm.terminal").send("kubectx dev && make rollout-dev", "vertical")
+     end,
+      "Rollout dev",
+    },
+    ["<leader>ml"] = {
+     function ()
+        require("nvterm.terminal").send("kubectx kind-kind && make rollout-local", "vertical")
+     end,
+      "Rollout local",
+    },
+    ["<leader>mr"] = {
+     function ()
+        require("nvterm.terminal").send("make run", "vertical")
+     end,
+      "Run project locally",
+    },
+    ["<leader>mx"] = {
+     function ()
+        require("nvterm.terminal").send("make run-debug", "vertical")
+     end,
+      "Run deubg",
+    },
+    -- K8S
+    ["<leader>kl"] = {
+      function ()
+        require("nvterm.terminal").send("logs_ag.sh " .. current_dir, "float")
+      end,
+      "",
+    },
+    ["<leader>k9"] = {
+      function ()
+        require("nvterm.terminal").send("k9s", "float")
+      end,
+      "",
+    },
+    ["<leader>kpd"] = {
+      function ()
+        require("nvterm.terminal").send("kubectx dev && k8s-port-forward-all", "vertical")
+      end,
+      "",
+    },
+    ["<leader>kpl"] = {
+      function ()
+        require("nvterm.terminal").send("kubectx kind-kind && k8s-port-forward-all", "vertical")
+      end,
+      "",
+    },
+    ["<leader>kpp"] = {
+      function ()
+        require("nvterm.terminal").send("kubectx customade && k8s-port-forward-all", "vertical")
+      end,
+      "",
+    },
+    ["<leader>kpc"] = {
+      function ()
+        require("nvterm.terminal").send("kubectx chanteclair && k8s-port-forward-all", "vertical")
+      end,
+      "",
+    },
+    -- CYPRESS
+    ["<leader>cb"] = {
+function ()
+        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-booking-spec", "float")
+end,
+      "",
+    },
+  },
+}
+
 M.telescope_project = {
   n ={
     ["<leader>fp"] = {
@@ -134,6 +234,10 @@ M.gopher = {
     ["<leader>gsy"] = {
       "<cmd> GoTagAdd yaml<CR>",
       "Add yaml struct tags",
+    },
+    ["<leader>gse"] = {
+      "<cmd> GoIfErr<CR>",
+      "Add if err block",
     },
   },
 }

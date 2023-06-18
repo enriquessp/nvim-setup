@@ -34,12 +34,15 @@ local plugins = {
     "jose-elias-alvarez/null-ls.nvim",
     ft = "go",
     opts = function ()
-     return require "custom.configs.null-ls"
+      return require "custom.configs.null-ls"
     end
   },
   {
     "olexsmir/gopher.nvim",
     ft = "go",
+    init = function ()
+      require "custom.inits.gopher"
+    end,
     config = function(_, opts)
       require("gopher").setup(opts)
       require("core.utils").load_mappings("gopher")
