@@ -1,7 +1,10 @@
 local home = os.getenv('HOME')
 local jdtls = require('jdtls')
-local jdtls_home = '/usr/local/Cellar/jdtls/1.24.0'
-local java_home = home .. "/.sdkman/candidates/java/17.0.3-zulu"
+local jdtls_home = os.getenv('JDTLS_HOME')
+local java_home = os.getenv('JAVA_HOME')
+
+-- local jdtls_home = '/home/linuxbrew/.linuxbrew/Cellar/jdtls/1.24.0'
+-- local java_home = home .. "/.sdkman/candidates/java/17.0.5-oracle"
 
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
