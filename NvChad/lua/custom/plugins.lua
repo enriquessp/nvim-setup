@@ -1,3 +1,4 @@
+
 local plugins = {
   {
     "williamboman/mason.nvim",
@@ -64,6 +65,9 @@ local plugins = {
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = "tpope/vim-dadbod",
+    init = function ()
+      require "custom.inits.dadbod"
+    end
   },
   {
     "nvim-telescope/telescope-project.nvim",
@@ -73,6 +77,9 @@ local plugins = {
         require'telescope'.load_extension('project')
       end, 0)
     end,
+  },
+  {
+    "tpope/vim-fugitive",
   },
 }
 return plugins

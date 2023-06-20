@@ -3,54 +3,61 @@ local M = {}
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+M.fugitive = {
+  n = {
+    ["<leader>gd"] = { "<leader>gd", function() vim.cmd("Gdiffsplit") end },
+    ["<leader>gc"] = { "<leader>gc", ":Git commit<CR>" },
+    ["<leader>gp"] = { "<leader>gp", ":Git push<CR>" },
+  },
+}
+
 function split(pString, pPattern)
-   local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
-   local fpat = "(.-)" .. pPattern
-   local last_end = 1
-   local s, e, cap = pString:find(fpat, 1)
-   while s do
-      if s ~= 1 or cap ~= "" then
-     table.insert(Table,cap)
-      end
-      last_end = e+1
-      s, e, cap = pString:find(fpat, last_end)
-   end
-   if last_end <= #pString then
-      cap = pString:sub(last_end)
-      table.insert(Table, cap)
-   end
-   return Table
+  local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
+  local fpat = "(.-)" .. pPattern
+  local last_end = 1
+  local s, e, cap = pString:find(fpat, 1)
+  while s do
+    if s ~= 1 or cap ~= "" then
+      table.insert(Table,cap)
+    end
+    last_end = e+1
+    s, e, cap = pString:find(fpat, last_end)
+  end
+  if last_end <= #pString then
+    cap = pString:sub(last_end)
+    table.insert(Table, cap)
+  end
+  return Table
 end
 
 local dir=split(os.getenv("PWD"), "/")
 local current_dir = dir[#dir]
-print("logs_ag.sh " .. current_dir)
 
 M.ag = {
   n = {
     -- MAKEFILE
     ["<leader>md"] = {
-     function ()
+      function ()
         require("nvterm.terminal").send("kubectx dev && make rollout-dev", "vertical")
-     end,
+      end,
       "Rollout dev",
     },
     ["<leader>ml"] = {
-     function ()
+      function ()
         require("nvterm.terminal").send("kubectx kind-kind && make rollout-local", "vertical")
-     end,
+      end,
       "Rollout local",
     },
     ["<leader>mr"] = {
-     function ()
+      function ()
         require("nvterm.terminal").send("make run", "vertical")
-     end,
+      end,
       "Run project locally",
     },
     ["<leader>mx"] = {
-     function ()
+      function ()
         require("nvterm.terminal").send("make run-debug", "vertical")
-     end,
+      end,
       "Run deubg",
     },
     -- K8S
@@ -92,9 +99,21 @@ M.ag = {
     },
     -- CYPRESS
     ["<leader>cb"] = {
-function ()
+      function ()
         require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-booking-spec", "float")
-end,
+      end,
+      "",
+    },
+    ["<leader>ct"] = {
+      function ()
+        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-ticketing-spec", "float")
+      end,
+      "",
+    },
+    ["<leader>co"] = {
+      function ()
+        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make open", "float")
+      end,
       "",
     },
   },
@@ -131,7 +150,7 @@ M.harpoon = {
         mark.rm_file()
       end,
       "",
-   },
+    },
     ["<leader>da"] = {
       function ()
         mark.clear_all()
@@ -274,22 +293,30 @@ M.general = {
     },
     ["J"] = {
       ":m '>+1<CR>gv=gv",
-      "Move block up",
+      "Move block down",
     },
     ["<C-k>"] = {
-      "<cmd>cnext<CR>zz",
+      ":cnext<CR>zz",
       "",
     },
     ["<C-j>"] = {
-      "<cmd>cprev<CR>zz",
+      ":cprev<CR>zz",
+      "",
+    },
+    ["<C-d>"] = {
+      "<C-d>zz",
+      "",
+    },
+    ["<C-u>"] = {
+      "<C-d>zz",
       "",
     },
     ["<leader>k"] = {
-      "<cmd>lnext<CR>zz",
+      ":lnext<CR>zz",
       "",
     },
     ["<leader>j"] = {
-      "<cmd>lprev<CR>zz",
+      ":lprev<CR>zz",
       "",
     },
   },

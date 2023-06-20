@@ -2,6 +2,7 @@ local home = os.getenv('HOME')
 local jdtls = require('jdtls')
 local jdtls_home = os.getenv('JDTLS_HOME')
 local java_home = os.getenv('JAVA_HOME')
+local jdtls_config = os.getenv('JDTLS_CONFIG')
 
 -- local jdtls_home = '/home/linuxbrew/.linuxbrew/Cellar/jdtls/1.24.0'
 -- local java_home = home .. "/.sdkman/candidates/java/17.0.5-oracle"
@@ -159,7 +160,7 @@ local config = {
 
     -- The configuration for jdtls is also placed where jdtls was installed. This will
     -- need to be updated depending on your environment
-    '-configuration', jdtls_home .. '/libexec/config_linux',
+    '-configuration', jdtls_home .. jdtls_config,
 
     -- Use the workspace_folder defined above to store data for this project
     '-data', workspace_folder,
