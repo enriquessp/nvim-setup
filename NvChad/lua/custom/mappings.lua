@@ -3,11 +3,62 @@ local M = {}
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-M.fugitive = {
+-- vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+
+vim.opt.wrap = false
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+-- vim.opt.termguicolors = true
+
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+
+vim.opt.updatetime = 50
+
+vim.opt.colorcolumn = "90"
+
+M.terminal = {
   n = {
-    ["<leader>gd"] = { "<leader>gd", function() vim.cmd("Gdiffsplit") end },
-    ["<leader>gc"] = { "<leader>gc", ":Git commit<CR>" },
-    ["<leader>gp"] = { "<leader>gp", ":Git push<CR>" },
+    ["<leader>th"] = {
+      function ()
+        require("nvterm.terminal").new "horizontal"
+      end,
+      "",
+    },
+    ["<leader>tv"] = {
+      function ()
+        require("nvterm.terminal").new "vertical"
+      end,
+      "",
+    },
+  }
+}
+
+M.fugitive = {
+  plugin = true,
+  n = {
+    ["<leader>Gs"] = {  vim.cmd.Git  },
+    ["<leader>Gd"] = {  vim.cmd.Gdiffsplit  },
+    ["<leader>Gc"] = {  ":Git commit<CR>" },
+    ["<leader>Gp"] = {  ":Git push<CR>" },
+    ["<leader>Ga"] = {  function ()
+      -- ":Git add ".. vim.fn.expand('%') .."<CR>"
+      vim.cmd.Git(" add " .. vim.fn.expand('%'))
+    end
+    },
   },
 }
 
@@ -100,19 +151,19 @@ M.ag = {
     -- CYPRESS
     ["<leader>cb"] = {
       function ()
-        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-booking-spec", "float")
+        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-booking-spec", "horizontal")
       end,
       "",
     },
     ["<leader>ct"] = {
       function ()
-        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-ticketing-spec", "float")
+        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-ticketing-spec", "horizontal")
       end,
       "",
     },
     ["<leader>co"] = {
       function ()
-        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make open", "float")
+        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make open", "horizontal")
       end,
       "",
     },
@@ -163,13 +214,13 @@ M.harpoon = {
       end,
       "",
     },
-    ["<C-n>"] = {
+    ["<C-m>"] = {
       function ()
         ui.nav_file(2)
       end,
       "",
     },
-    ["<C-m>"] = {
+    ["<C-b>"] = {
       function ()
         ui.nav_file(3)
       end,
@@ -246,12 +297,6 @@ M.dap_go = {
       end,
       "Dap step over",
     },
-    ["<C-o>"] = {
-      function ()
-        vim.cmd("DapStepOut")
-      end,
-      "Dap step over",
-    },
     ["<C-i>"] = {
       function ()
         vim.cmd("DapStepInto")
@@ -285,6 +330,16 @@ M.gopher = {
   },
 }
 
+M.lspconfig = {
+  plugin = true,
+  n = {
+    ["<leader>rn"] = {
+      vim.lsp.buf.rename,
+      "",
+    },
+  }
+}
+
 M.general = {
   v = {
     ["K"] = {
@@ -294,14 +349,6 @@ M.general = {
     ["J"] = {
       ":m '>+1<CR>gv=gv",
       "Move block down",
-    },
-    ["<C-k>"] = {
-      ":cnext<CR>zz",
-      "",
-    },
-    ["<C-j>"] = {
-      ":cprev<CR>zz",
-      "",
     },
     ["<C-d>"] = {
       "<C-d>zz",

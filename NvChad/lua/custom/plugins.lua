@@ -5,6 +5,7 @@ local plugins = {
     opts = {
       ensure_installed = {
         "gopls",
+        "jdtls",
       },
     },
   },
@@ -60,13 +61,10 @@ local plugins = {
     end
   },
   {
-    "tpope/vim-dadbod",
-  },
-  {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = "tpope/vim-dadbod",
-    init = function ()
-      require "custom.inits.dadbod"
+    config = function ()
+      require "custom.configs.dadbod"
     end
   },
   {
@@ -80,6 +78,19 @@ local plugins = {
   },
   {
     "tpope/vim-fugitive",
+    lazy = false,
+    config = function (_,opts)
+      require("core.utils").load_mappings("fugitive")
+    end,
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = "*.java",
+    init = function ()
+      vim.defer_fn(function ()
+       require"custom.inits.jdtls"
+      end, 0)
+    end
   },
 }
 return plugins
