@@ -303,12 +303,6 @@ M.dap_go = {
       end,
       "Dap step into",
     },
-    ["<C-r>"] = {
-      function ()
-        vim.cmd("DapContinue")
-      end,
-      "Dap continue",
-    },
   },
 }
 
