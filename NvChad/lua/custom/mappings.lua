@@ -373,6 +373,14 @@ M.trouble = {
         noremap = true,
       },
     },
+    ["gi"] = {
+      "<cmd>TroubleToggle lsp_implementations<CR>",
+      "",
+      opts = {
+        silent = true,
+        noremap = true,
+      },
+    },
   }
 }
 
