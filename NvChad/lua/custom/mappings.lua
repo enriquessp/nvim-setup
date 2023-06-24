@@ -381,6 +381,15 @@ M.vimgo = {
     ["<leader>lf"] = {
       ":GoDecls<CR>",
     },
+    ["<leader>lb"] = {
+      ":GoBuild<CR>",
+    },
+    ["<leader>lt"] = {
+      ":GoTest<CR>",
+    },
+    ["<leader>lc"] = {
+      ":GoCoverageToggle<CR>",
+    },
   }
 }
 
