@@ -363,4 +363,17 @@ M.general = {
   },
 }
 
+M.trouble = {
+  n = {
+    ["gr"] = {
+      "<cmd>TroubleToggle lsp_references<CR>",
+      "",
+      opts = {
+        silent = true,
+        noremap = true,
+      },
+    },
+  }
+}
+
 return M

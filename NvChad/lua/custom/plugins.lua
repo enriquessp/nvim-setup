@@ -10,6 +10,15 @@ local plugins = {
     },
   },
   {
+    "folke/trouble.nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("custom.configs.trouble")
+      require("core.utils").load_mappings("trouble")
+    end
+  },
+  {
     "mfussenegger/nvim-dap",
     init = function ()
       require("core.utils").load_mappings("dap")
