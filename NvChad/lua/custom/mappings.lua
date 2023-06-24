@@ -376,4 +376,12 @@ M.trouble = {
   }
 }
 
+M.vimgo = {
+  n = {
+    ["<leader>lf"] = {
+      ":GoDecls<CR>",
+    },
+  }
+}
+
 return M

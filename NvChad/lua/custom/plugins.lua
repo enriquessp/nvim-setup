@@ -88,7 +88,7 @@ local plugins = {
   {
     "tpope/vim-fugitive",
     lazy = false,
-    config = function (_,opts)
+    config = function ()
       require("core.utils").load_mappings("fugitive")
     end,
   },
@@ -99,6 +99,18 @@ local plugins = {
       vim.defer_fn(function ()
        require"custom.inits.jdtls"
       end, 0)
+    end
+  },
+  {
+    "junegunn/fzf",
+    lazy = false,
+  },
+  {
+    "fatih/vim-go",
+    lazy = false,
+    depedencies = "junegunn/fzf.vim",
+    build = function ()
+      vim.cmd("GoUpdateBinaries")
     end
   },
 }
