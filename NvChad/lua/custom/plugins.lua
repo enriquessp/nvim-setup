@@ -7,6 +7,7 @@ local plugins = {
       ensure_installed = {
         "gopls",
         "jdtls",
+        "marksman",
       },
     },
   },
@@ -113,6 +114,16 @@ local plugins = {
     build = function ()
       vim.cmd("GoUpdateBinaries")
     end
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
   },
 }
 return plugins
