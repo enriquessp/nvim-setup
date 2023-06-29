@@ -21,9 +21,11 @@ M.fugitive = {
   plugin = true,
   n = {
     ["<leader>Gs"] = {  vim.cmd.Git  },
+    ["<leader>Gl"] = {  ":Git log<CR>"  },
     ["<leader>Gd"] = {  vim.cmd.Gdiffsplit  },
     ["<leader>Gc"] = {  ":Git commit<CR>" },
-    ["<leader>Gp"] = {  ":Git push<CR>" },
+    ["<leader>Gp"] = {  ":Git pull<CR>" },
+    ["<leader>GP"] = {  ":Git push<CR>" },
     ["<leader>Ga"] = {  function ()
       -- ":Git add ".. vim.fn.expand('%') .."<CR>"
       vim.cmd.Git(" add " .. vim.fn.expand('%'))
