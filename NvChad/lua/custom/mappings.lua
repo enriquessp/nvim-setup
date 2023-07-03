@@ -98,25 +98,25 @@ M.ag = {
     },
     ["<leader>kpd"] = {
       function ()
-        require("nvterm.terminal").send("kubectx dev && k8s-port-forward-all", "vertical")
+        require("nvterm.terminal").send("kubectx dev && k8s-port-forward-all " .. current_dir, "vertical")
       end,
       "",
     },
     ["<leader>kpl"] = {
       function ()
-        require("nvterm.terminal").send("kubectx kind-kind && k8s-port-forward-all", "vertical")
+        require("nvterm.terminal").send("kubectx kind-kind && k8s-port-forward-all " .. current_dir, "vertical")
       end,
       "",
     },
     ["<leader>kpp"] = {
       function ()
-        require("nvterm.terminal").send("kubectx customade && k8s-port-forward-all", "vertical")
+        require("nvterm.terminal").send("kubectx customade && k8s-port-forward-all " .. current_dir, "vertical")
       end,
       "",
     },
     ["<leader>kpc"] = {
       function ()
-        require("nvterm.terminal").send("kubectx chanteclair && k8s-port-forward-all", "vertical")
+        require("nvterm.terminal").send("kubectx chanteclair && k8s-port-forward-all " .. current_dir, "vertical")
       end,
       "",
     },
@@ -269,7 +269,7 @@ M.dap_go = {
       end,
       "Dap step over",
     },
-    ["<C-i>"] = {
+    ["<C-m>"] = {
       function ()
         vim.cmd("DapStepInto")
       end,
