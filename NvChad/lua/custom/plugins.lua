@@ -8,6 +8,9 @@ local plugins = {
         "gopls",
         "jdtls",
         "marksman",
+        "sumneko_lua",
+        "tsserver",
+        "tailwindcss"
       },
     },
   },
