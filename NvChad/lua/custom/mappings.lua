@@ -86,7 +86,8 @@ M.ag = {
     -- K8S
     ["<leader>kl"] = {
       function ()
-        require("nvterm.terminal").send("logs_ag.sh " .. current_dir, "float")
+        local cmd = "stern -l app=" .. current_dir .. " -o raw | grep -e '^{' | jq"
+        require("nvterm.terminal").send(cmd, "float")
       end,
       "",
     },
@@ -98,44 +99,51 @@ M.ag = {
     },
     ["<leader>kpd"] = {
       function ()
-        require("nvterm.terminal").send("kubectx dev && k8s-port-forward-all " .. current_dir, "vertical")
+        local cmd = "kubectx dev && k8s-port-forward-all " .. current_dir
+        require("nvterm.terminal").send(cmd, "vertical")
       end,
       "",
     },
     ["<leader>kpl"] = {
       function ()
-        require("nvterm.terminal").send("kubectx kind-kind && k8s-port-forward-all " .. current_dir, "vertical")
+        local cmd = "kubectx kind-kind && k8s-port-forward-all " .. current_dir
+        require("nvterm.terminal").send(cmd, "vertical")
       end,
       "",
     },
     ["<leader>kpp"] = {
       function ()
-        require("nvterm.terminal").send("kubectx customade && k8s-port-forward-all " .. current_dir, "vertical")
+        local cmd = "kubectx customade && k8s-port-forward-all " .. current_dir
+        require("nvterm.terminal").send(cmd, "vertical")
       end,
       "",
     },
     ["<leader>kpc"] = {
       function ()
-        require("nvterm.terminal").send("kubectx chanteclair && k8s-port-forward-all " .. current_dir, "vertical")
+        local cmd = "kubectx chanteclair && k8s-port-forward-all " .. current_dir
+        require("nvterm.terminal").send(cmd, "vertical")
       end,
       "",
     },
     -- CYPRESS
     ["<leader>cb"] = {
       function ()
-        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-booking-spec", "horizontal")
+        local cmd = "cd ~/projects/ag/poc-cypressio && make run-booking-spec"
+        require("nvterm.terminal").send(cmd, "horizontal")
       end,
       "",
     },
     ["<leader>ct"] = {
       function ()
-        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make run-ticketing-spec", "horizontal")
+        local cmd = "cd ~/projects/ag/poc-cypressio && make run-ticketing-spec"
+        require("nvterm.terminal").send(cmd, "horizontal")
       end,
       "",
     },
     ["<leader>co"] = {
       function ()
-        require("nvterm.terminal").send("cd ~/projects/ag/poc-cypressio && make open", "horizontal")
+        local cmd = "cd ~/projects/ag/poc-cypressio && make open"
+        require("nvterm.terminal").send(cmd, "horizontal")
       end,
       "",
     },
